@@ -1,0 +1,42 @@
+@import "./styles/mixins.scss";
+
+header {
+  background-color: $primary;
+  color: white;
+  padding: 1em;
+  display: flex;
+  justify-content: space-between;
+  box-shadow: rgba(100, 100, 111, 0.5) 0px 7px 29px 0px;
+  .branding {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    .app-logo {
+      height: 60px;
+      margin-right: 1em;
+    }
+    h1,.app-logo {
+      color: white;
+      display: inline-block;
+    }
+  }
+}
+
+main {
+  max-width: 1000px;
+  margin: auto;
+  margin-top: 3em;
+  .wallet {
+    margin-left: 16px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    img {
+      margin-right: 1em;
+    }
+    h3 {
+      display: inline-block;
+      color: black;
+    }
+  }
+}
