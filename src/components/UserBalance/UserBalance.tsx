@@ -48,7 +48,7 @@ const UserBalance = () => {
         </section>
         <h3>2. Profit</h3>
           <section>
-            Fuck off
+            Info.
           </section>
       </section>
     </div>

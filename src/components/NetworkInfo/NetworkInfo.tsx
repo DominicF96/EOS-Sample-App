@@ -8,7 +8,6 @@ import styles from './NetworkInfo.module.scss';
 const NetworkInfo = () => {
 
   const [isNetworkOnline, setIsNetworkOnline] = useState<Boolean>(false);
-  const networkInfoKeys : Array<string> = ["blockchain", "chainId", "host", "name", "port", "protocol", "token"];
 
   useEffect(() => {
     pingNetwork();
