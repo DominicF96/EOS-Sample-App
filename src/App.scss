@@ -26,17 +26,4 @@ main {
   max-width: 1000px;
   margin: auto;
   margin-top: 3em;
-  .wallet {
-    margin-left: 16px;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    img {
-      margin-right: 1em;
-    }
-    h3 {
-      display: inline-block;
-      color: black;
-    }
-  }
 }

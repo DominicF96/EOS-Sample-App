@@ -1,37 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React from "react";
 
-import { getApi, network, rpc } from "./utils/blockchain";
-import walletAutoDetect from './utils/wallet';
+import NetworkInfo from './components/NetworkInfo/NetworkInfo';
+import AvailableWallets from "./components/AvailableWallets/AvailableWallets";
 import TokenTransfer from "./components/TokenTransfer/TokenTransfer";
 import logo from './logo.svg';
 
 import './App.scss';
-import useInterval from 'use-interval';
-import NetworkInfo from './components/NetworkInfo/NetworkInfo';
 
 function App() {
-
-  const [wallets, setWallets] = useState<Array<String>>([]);
-
-  useEffect(() => {
-    setWallets(walletAutoDetect());
-  }, []);
-
-  // WALLET RELATED =================================================
-
-  const renderAvailableWallets = () => {
-    return <>
-      <h2>Available Wallets</h2>
-      {wallets && wallets.length > 0 ? <>
-        {wallets.map(wallet => {
-          return <div className="wallet">
-            <img src={`/images/wallets/${wallet}.png`} alt="Wallet logo"/>
-            <h3>{wallet}</h3>
-          </div>
-        })}
-      </> : "None"}
-    </>
-  }
 
   // NETWORK RELATED =================================================
   return (
@@ -43,7 +19,7 @@ function App() {
         </div>
       </header>
       <main>
-        {renderAvailableWallets()}
+        <AvailableWallets/>
         <NetworkInfo/>
         <TokenTransfer/>
       </main>

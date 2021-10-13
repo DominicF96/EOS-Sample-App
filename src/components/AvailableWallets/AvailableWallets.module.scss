@@ -1,0 +1,15 @@
+.AvailableWallets {}
+
+.Wallet {
+    margin-left: 16px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    img {
+      margin-right: 1em;
+    }
+    h3 {
+      display: inline-block;
+      color: black;
+    }
+  }

@@ -30,7 +30,9 @@ const NetworkInfo = () => {
         <dl>
           <div className={styles.KvRow}>
             <dt>Online</dt>
-            <dd><div className={isNetworkOnline ? styles.NetworkStatusOnline : styles.NetworkStatusOffline}/></dd>
+            <dd><div className={isNetworkOnline ? styles.NetworkStatusOnline : styles.NetworkStatusOffline}/>
+              {isNetworkOnline ? "Online" : "Offline"}
+            </dd>
           </div>
           {networkInfoKeys.map((key) => {
             return <div className={styles.KvRow}>
