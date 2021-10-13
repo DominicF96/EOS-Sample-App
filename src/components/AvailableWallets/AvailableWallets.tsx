@@ -13,6 +13,8 @@ const AvailableWallets = () => {
   return (
     <div className={styles.AvailableWallets} data-testid="AvailableWallets">
       <h2>Available Wallets</h2>
+      <section>
+        <p>This section displays a list of wallets that are ready to used (installed on browser).</p>
         {wallets && wallets.length > 0 ? <>
           {wallets.map(wallet => {
             return <div className={styles.Wallet}>
@@ -21,6 +23,7 @@ const AvailableWallets = () => {
             </div>
           })}
         </> : "None"}
+      </section>
     </div>
   );
 }

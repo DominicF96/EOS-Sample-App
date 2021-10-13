@@ -4,7 +4,7 @@
  * 
  * @returns Array of installed wallets
  */
-const walletAutoDetect = () : Array<String> => {
+const walletAutoDetect = () : Array<string> => {
 
     const { ethereum, __wombat__ } = window as any;
     const availableWallets = [];

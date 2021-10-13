@@ -8,7 +8,7 @@ import styles from './NetworkInfo.module.scss';
 const NetworkInfo = () => {
 
   const [isNetworkOnline, setIsNetworkOnline] = useState<Boolean>(false);
-  const networkInfoKeys = ["blockchain", "chainId", "host", "name", "port", "protocol", "token"];
+  const networkInfoKeys : Array<string> = ["blockchain", "chainId", "host", "name", "port", "protocol", "token"];
 
   useEffect(() => {
     pingNetwork();
@@ -25,23 +25,48 @@ const NetworkInfo = () => {
 
   return (
     <div className={styles.NetworkInfo} data-testid="NetworkInfo">
-      {network && <>
-        <h2>Network Info</h2>
-        <dl>
-          <div className={styles.KvRow}>
-            <dt>Online</dt>
-            <dd><div className={isNetworkOnline ? styles.NetworkStatusOnline : styles.NetworkStatusOffline}/>
-              {isNetworkOnline ? "Online" : "Offline"}
-            </dd>
-          </div>
-          {networkInfoKeys.map((key) => {
-            return <div className={styles.KvRow}>
-              <dt>{key}</dt>
-              <dd className={!network[key] && styles.MissingValue}>{network[key] || "None"}</dd>
+      <h2>Network Info</h2>
+      <section>
+        <p>This section displays the current information of the blockchain network we're currently connected to.</p>
+        {network && <>
+          <dl>
+            <div className={styles.KvRow}>
+              <dt>Online</dt>
+              <dd><div className={isNetworkOnline ? styles.NetworkStatusOnline : styles.NetworkStatusOffline}/>
+                {isNetworkOnline ? "Online" : "Offline"}
+              </dd>
             </div>
-          })}
-        </dl>
-      </>}
+            <div className={styles.KvRow}>
+              <dt>Blockchain</dt>
+              <dd className={!network.blockchain || network.blockchain.length <= 0 ? styles.MissingValue : ""}>{network.blockchain || "None"}</dd>
+            </div>
+            <div className={styles.KvRow}>
+              <dt>chainId</dt>
+              <dd className={!network.chainId || network.chainId.length <= 0 ? styles.MissingValue : ""}>{network.chainId || "None"}</dd>
+            </div>
+            <div className={styles.KvRow}>
+              <dt>host</dt>
+              <dd className={!network.host || network.host.length <= 0 ? styles.MissingValue : ""}>{network.host || "None"}</dd>
+            </div>
+            <div className={styles.KvRow}>
+              <dt>name</dt>
+              <dd className={!network.name || network.name.length <= 0 ? styles.MissingValue : ""}>{network.name || "None"}</dd>
+            </div>
+            <div className={styles.KvRow}>
+              <dt>port</dt>
+              <dd className={!network.port || network.port.length <= 0 ? styles.MissingValue : ""}>{network.port || "None"}</dd>
+            </div>
+            <div className={styles.KvRow}>
+              <dt>protocol</dt>
+              <dd className={!network.protocol || network.protocol.length <= 0 ? styles.MissingValue : ""}>{network.protocol || "None"}</dd>
+            </div>
+            <div className={styles.KvRow}>
+              <dt>token</dt>
+              <dd className={!network.token ? styles.MissingValue : ""}>{network.token || "None"}</dd>
+            </div>
+          </dl>
+        </>}
+      </section>
     </div>
   );
 }

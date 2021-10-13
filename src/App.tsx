@@ -2,6 +2,7 @@ import React from "react";
 
 import NetworkInfo from './components/NetworkInfo/NetworkInfo';
 import AvailableWallets from "./components/AvailableWallets/AvailableWallets";
+import UserBalance from "./components/UserBalance/UserBalance";
 import TokenTransfer from "./components/TokenTransfer/TokenTransfer";
 import logo from './logo.svg';
 
@@ -21,6 +22,7 @@ function App() {
       <main>
         <AvailableWallets/>
         <NetworkInfo/>
+        <UserBalance/>
         <TokenTransfer/>
       </main>
     </div>
