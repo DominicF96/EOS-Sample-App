@@ -8,48 +8,59 @@ import styles from './UserBalance.module.scss';
 
 const UserBalance = () => {
 
-  const [wallets, setWallets] = useState<Array<string>>([]);
-  const [selectedWallet, setSelectedWallet] = useState<string>("");
+  interface IAccount {
+    account: string | undefined,
+    permission: string | undefined
+  }
+
+  const [account, setAccount] = useState<IAccount>({
+    account: "Unknown",
+    permission: "Unknown"
+  });
+  const [balance, setBalance] = useState<string[]>([]);
 
   useEffect(() => {
-    setWallets(walletAutoDetect());
-  }, []);
+    Scatter.getAccount().then((account) => {
+      console.log(account)
+      setAccount(account);
+    }).catch((e) => {
+      console.error(e);
+      setAccount({
+        account: "Unknown",
+        permission: "Unknown"
+      });
+    });
+  }, [])
 
   useEffect(() => {
-    if (wallets && wallets.length > 0) {
-      setSelectedWallet(wallets[0]);
+    if (account && account.account) {
+      Scatter.getBalance(account.account).then((balance) => {
+        setBalance(balance);
+      }).catch(e => {
+        console.error(e);
+      });
     }
-  }, [wallets]);
-
-  const handleSelectWallet = (event: SelectChangeEvent) => {
-    setSelectedWallet(event.target.value as string);
-  };
+  }, [account])
 
   return (
     <div className={styles.UserBalance} data-testid="UserBalance">
       <h2>User Balance</h2>
       <section>
-        <p>This section allows you to look up a specific wallet's balance.</p>
-        <h3>1. Pick Wallet</h3>
-        <section>
-          <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            value={selectedWallet}
-            defaultValue={wallets ? wallets[0] : undefined}
-            label="Wallet"
-            onChange={handleSelectWallet}
-            variant="filled"
-          >
-            {wallets.map((wallet) => {
-              return <MenuItem value={wallet}>{wallet}</MenuItem>
-            })}
-          </Select>
-        </section>
-        <h3>2. Profit</h3>
-          <section>
-            Info.
-          </section>
+        <p>This section allows you to look up the detected Scatter compatible wallet's information and balance.</p>
+        <dl>
+          <div className={styles.KvRow}>
+            <dt>Account</dt>
+            <dd>{account?.account || "Unknown"}</dd>
+          </div>
+          <div className={styles.KvRow}>
+            <dt>Permission</dt>
+            <dd>{account?.permission || "Unknown"}</dd>
+          </div>
+          <div className={styles.KvRow}>
+            <dt>Balance</dt>
+            <dd>{balance[0] || "[]"}</dd>
+          </div>
+        </dl>
       </section>
     </div>
   );

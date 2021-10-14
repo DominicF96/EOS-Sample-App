@@ -1,3 +1,18 @@
 .UserBalance {
     margin-top: 3em;
 }
+
+.KvRow {
+    padding-top: 0.5em;
+}
+
+dt {
+    display: inline-block;
+    font-weight: bold;
+    min-width: 100px !important;
+    text-transform: capitalize;
+}
+
+dd {
+    display: inline-block;
+}
